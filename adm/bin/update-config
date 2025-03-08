@@ -1,0 +1,25 @@
+#!/bin/bash
+
+src="${BASH_SOURCE[0]}"
+src_full=$(realpath "$src")
+src_dir="${src_full%/*}"
+
+# Idempotent configuration update script
+
+# adds a new or replaces the existing system commit template with repo version
+repo_template=$(realpath "${src_dir}/../../commit.wik")
+template_file=$(git config --global --get commit.template)
+if [[ "$template_file" != "$repo_template" ]]; then
+    git config --global commit.template "$repo_template"
+    if [[ -n "$template_file" ]]; then
+        echo "Warning: replaced commit template ${template_file} with ${repo_template}" 1>&2
+    fi
+fi
+
+# adds shellbox.profile sourcing to bashrc
+if ! grep -q 'shellbox.profile' < ~/.bashrc; then
+    profile_file=$(realpath "${src_dir}/../../shellbox.profile")
+    echo ". \"${profile_file}\"" >> "${HOME}/.bashrc"
+    echo "Added ${profile_file} source file to ${HOME}/.bashrc"
+fi
+

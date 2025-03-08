@@ -1,0 +1,37 @@
+
+# CURREN REPO
+# shellbox - main
+#
+# GENERAL COMMIT REVIEW CHECKLIST
+# - [ ] All tests are passing
+# - [ ] No stray/temporary files or secrets are staged for commit
+#
+# CI INTEGRATION
+# _New Project Or App_
+# - [ ] Add yaml file
+# - [ ] Merge upstream dev branch and fix conflicts
+#
+# DOT NET CHECKLIST
+#
+# _General_
+# - [ ] All solution projects build
+# - [ ] Fix warnings for all touched file parts (unused using statements, etc)
+#
+# _Entity Framework_
+# - [ ] Add AsSplitQuery for A LOT of .Includes or deep object navigation
+# - [ ] Add AsNoTracking if the object is not being updated by the service
+# - [ ] Add/Remove necessary .Includes when using ToList (in-memory queries)
+#     _Migration_
+#     - [ ] Add the DbSet to the context
+#     - [ ] Add the Fluent Api configurations
+#     - [ ] Make model changes (ensure Id field is included)
+#     - [ ] Add/Remove entity OData config if needed
+#
+# _OData_
+# - [ ] Test that new Actions/Functions can be accessed with expand (if enabled)
+# - [ ] When removing function/action/entity, update OData config
+# - [ ] When adding function/action/entity, update OData config
+# - [ ] Test filter,orderby,top,skip,count query params for new api endpoints
+#
+# _Package Management_
+# - [ ] New dep with using directive should be a direct not transitive reference

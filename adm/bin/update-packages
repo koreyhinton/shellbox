@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# idempotent script.
+# Install failures are not printed (and if system doesn't support a particular
+# package, it will just continue on).
+#
+# If a new version is available, it will be installed in place of the old
+# version.
+
+# update-packages must be added to the PATH
+
+# if root, run: update-packages
+# if not root, run: sudo update-packages
+
+apt-get update
+# apt-get install -y emacs-gtk 2>/dev/null
+apt-get install -y emacs-nox 2>/dev/null
+apt-get install -y git 2>/dev/null
